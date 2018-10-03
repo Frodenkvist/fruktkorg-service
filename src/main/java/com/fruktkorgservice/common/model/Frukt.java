@@ -61,7 +61,7 @@ public class Frukt {
                 "id=" + id +
                 ", type='" + type + '\'' +
                 ", amount=" + amount +
-                ", fruktkorg=" + fruktkorg.getName() +
+                ", fruktkorggateway=" + fruktkorg.getName() +
                 '}';
     }
 }
