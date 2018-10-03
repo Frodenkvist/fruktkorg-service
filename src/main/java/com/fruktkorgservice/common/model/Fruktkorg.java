@@ -1,6 +1,5 @@
-package com.fruktkorg.common.model;
+package com.fruktkorgservice.common.model;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 

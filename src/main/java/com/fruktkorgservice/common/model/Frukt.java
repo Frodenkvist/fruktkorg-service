@@ -1,4 +1,4 @@
-package com.fruktkorg.common.model;
+package com.fruktkorgservice.common.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

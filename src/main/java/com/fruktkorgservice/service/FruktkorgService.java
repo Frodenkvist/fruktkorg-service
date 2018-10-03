@@ -1,7 +1,7 @@
-package com.fruktkorg.service;
+package com.fruktkorgservice.service;
 
-import com.fruktkorg.common.model.Frukt;
-import com.fruktkorg.common.model.Fruktkorg;
+import com.fruktkorgservice.common.model.Frukt;
+import com.fruktkorgservice.common.model.Fruktkorg;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
