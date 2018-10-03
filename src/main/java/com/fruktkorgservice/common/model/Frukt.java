@@ -1,17 +1,28 @@
 package com.fruktkorgservice.common.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "frukt")
 public class Frukt {
-
+    @Id
+    @SequenceGenerator(name = "frukt_frukt_id_seq", sequenceName = "frukt_frukt_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "frukt_frukt_id_seq")
+    @Column(name = "frukt_id", updatable = false)
     private long id;
 
+    @Column(name = "type")
     private String type;
 
+    @Column(name = "amount")
     private int amount;
 
-    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "fruktkorg_id")
+    @JsonBackReference
     private Fruktkorg fruktkorg;
 
     public Frukt() {
@@ -61,7 +72,7 @@ public class Frukt {
                 "id=" + id +
                 ", type='" + type + '\'' +
                 ", amount=" + amount +
-                ", fruktkorggateway=" + fruktkorg.getName() +
+                ", fruktkorg=" + fruktkorg.getName() +
                 '}';
     }
 }
