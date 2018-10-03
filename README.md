@@ -1,4 +1,4 @@
-For this repo you need to have postgres installed and create an user and database with the following commands
+For this repo you need to have postgres installed and create an user (if it does not already exist) and database with the following commands
 
 `create role -U postgres fruktmannen`
 
