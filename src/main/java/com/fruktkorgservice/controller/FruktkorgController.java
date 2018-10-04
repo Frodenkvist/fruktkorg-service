@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -54,7 +53,7 @@ public class FruktkorgController {
     public ResponseEntity<?> updateFruktkorg(@RequestBody @Valid FruktkorgUpdateDTO fruktkorg) {
         try {
             fruktkorgService.getFruktkorg(fruktkorg.getId());
-            for (FruktUpdateDTO frukt: fruktkorg.getFruktList()) {
+            for (FruktUpdateDTO frukt : fruktkorg.getFruktList()) {
                 fruktkorgService.getFrukt(frukt.getId());
             }
             return JS.message(HttpStatus.OK, fruktkorgService.saveFruktkorg(new Fruktkorg(fruktkorg)));

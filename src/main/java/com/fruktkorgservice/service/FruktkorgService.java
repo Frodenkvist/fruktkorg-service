@@ -1,16 +1,16 @@
 package com.fruktkorgservice.service;
 
 import com.fruktkorgservice.common.exception.FruktMissingException;
+import com.fruktkorgservice.common.exception.FruktkorgMissingException;
 import com.fruktkorgservice.common.model.Frukt;
 import com.fruktkorgservice.common.model.FruktRepository;
-import com.fruktkorgservice.common.model.FruktkorgRepository;
-import com.fruktkorgservice.common.exception.FruktkorgMissingException;
 import com.fruktkorgservice.common.model.Fruktkorg;
+import com.fruktkorgservice.common.model.FruktkorgRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.List;
 
 @Service
 public class FruktkorgService {
