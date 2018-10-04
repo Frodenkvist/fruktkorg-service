@@ -1,6 +1,13 @@
 package com.fruktkorgservice.common.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fruktkorgservice.common.model.dto.FruktCreateDTO;
+import com.fruktkorgservice.common.model.dto.FruktUpdateDTO;
+import com.fruktkorgservice.common.model.dto.FruktkorgCreateDTO;
+import com.fruktkorgservice.common.model.dto.FruktkorgUpdateDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -8,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "fruktkorg")
 public class Fruktkorg {
     @Id
@@ -26,42 +36,23 @@ public class Fruktkorg {
     @Column(name = "last_changed")
     private Instant lastChanged;
 
-    public Fruktkorg() {}
-
-    public Fruktkorg(String name) {
-        this.name = name;
+    public Fruktkorg(FruktkorgCreateDTO fruktkorg) {
+        this.name = fruktkorg.getName();
+        this.lastChanged = fruktkorg.getLastChanged();
+        for (FruktCreateDTO frukt: fruktkorg.getFruktList()) {
+            frukt.setFruktkorg(this);
+            fruktList.add(new Frukt(frukt));
+        }
     }
 
-    public List<Frukt> getFruktList() {
-        return fruktList;
-    }
-
-    public void setFruktList(List<Frukt> fruktList) {
-        this.fruktList = fruktList;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Instant getLastChanged() {
-        return lastChanged;
-    }
-
-    public void setLastChanged(Instant lastChanged) {
-        this.lastChanged = lastChanged;
+    public Fruktkorg(FruktkorgUpdateDTO fruktkorg) {
+        this.id = fruktkorg.getId();
+        this.name = fruktkorg.getName();
+        this.lastChanged = fruktkorg.getLastChanged();
+        for(FruktUpdateDTO frukt: fruktkorg.getFruktList()) {
+            frukt.setFruktkorg(this);
+            fruktList.add(new Frukt(frukt));
+        }
     }
 
     @Override

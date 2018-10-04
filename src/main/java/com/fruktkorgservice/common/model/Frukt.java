@@ -2,10 +2,19 @@ package com.fruktkorgservice.common.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fruktkorgservice.common.model.dto.FruktCreateDTO;
+import com.fruktkorgservice.common.model.dto.FruktUpdateDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "frukt")
 public class Frukt {
     @Id
@@ -14,6 +23,7 @@ public class Frukt {
     @Column(name = "frukt_id", updatable = false)
     private long id;
 
+    @NotNull
     @Column(name = "type")
     private String type;
 
@@ -25,45 +35,17 @@ public class Frukt {
     @JsonBackReference
     private Fruktkorg fruktkorg;
 
-    public Frukt() {
+    public Frukt(FruktCreateDTO frukt) {
+        this.type = frukt.getType();
+        this.amount = frukt.getAmount();
+        this.fruktkorg = frukt.getFruktkorg();
     }
 
-    public Frukt(String type, int amount, Fruktkorg fruktkorg) {
-        this.type = type;
-        this.amount = amount;
-        this.fruktkorg = fruktkorg;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public Fruktkorg getFruktkorg() {
-        return fruktkorg;
-    }
-
-    public void setFruktkorg(Fruktkorg fruktkorg) {
-        this.fruktkorg = fruktkorg;
+    public Frukt(FruktUpdateDTO frukt) {
+        this.id = frukt.getId();
+        this.type = frukt.getType();
+        this.amount = frukt.getAmount();
+        this.fruktkorg = frukt.getFruktkorg();
     }
 
     @Override

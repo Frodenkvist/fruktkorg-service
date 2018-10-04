@@ -1,5 +1,8 @@
 package com.fruktkorgservice.common.exception;
 
+import lombok.Data;
+
+@Data
 public class FruktkorgMissingException extends Exception {
     private long fruktkorgId;
 
@@ -8,11 +11,4 @@ public class FruktkorgMissingException extends Exception {
         this.fruktkorgId = fruktkorgId;
     }
 
-    public long getFruktkorgId() {
-        return fruktkorgId;
-    }
-
-    public void setFruktkorgId(long fruktkorgId) {
-        this.fruktkorgId = fruktkorgId;
-    }
 }
