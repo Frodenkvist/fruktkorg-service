@@ -1,6 +1,6 @@
 package com.fruktkorgservice.controller;
 
-import com.fruktkorgservice.controller.util.JS;
+import com.common.util.JS;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
