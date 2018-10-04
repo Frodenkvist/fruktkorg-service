@@ -1,12 +1,12 @@
 package com.fruktkorgservice.controller;
 
+import com.common.util.JS;
 import com.fruktkorgservice.common.exception.FruktMissingException;
 import com.fruktkorgservice.common.exception.FruktkorgMissingException;
 import com.fruktkorgservice.common.model.Fruktkorg;
 import com.fruktkorgservice.common.model.dto.FruktUpdateDTO;
 import com.fruktkorgservice.common.model.dto.FruktkorgCreateDTO;
 import com.fruktkorgservice.common.model.dto.FruktkorgUpdateDTO;
-import com.fruktkorgservice.controller.util.JS;
 import com.fruktkorgservice.service.FruktkorgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
