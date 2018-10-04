@@ -1,6 +1,6 @@
 package com.fruktkorgservice.controller;
 
-import com.common.util.JS;
+import com.common.util.JSON;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +12,6 @@ public class RootController {
     @GetMapping("/")
     @ResponseBody
     public ResponseEntity<?> ping() {
-        return JS.message(HttpStatus.OK, "Pong");
+        return JSON.message(HttpStatus.OK, "Pong");
     }
 }

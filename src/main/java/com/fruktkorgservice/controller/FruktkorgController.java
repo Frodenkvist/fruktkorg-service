@@ -1,6 +1,6 @@
 package com.fruktkorgservice.controller;
 
-import com.common.util.JS;
+import com.common.util.JSON;
 import com.fruktkorgservice.common.exception.FruktMissingException;
 import com.fruktkorgservice.common.exception.FruktkorgMissingException;
 import com.fruktkorgservice.common.model.Fruktkorg;
@@ -31,10 +31,10 @@ public class FruktkorgController {
     public ResponseEntity<?> findById(@PathVariable long id) {
 
         try {
-            return JS.message(HttpStatus.OK, fruktkorgService.getFruktkorg(id));
+            return JSON.message(HttpStatus.OK, fruktkorgService.getFruktkorg(id));
 
         } catch (FruktkorgMissingException e) {
-            return JS.message(HttpStatus.NOT_FOUND, "Unable to find Fruktkorg with id " + id);
+            return JSON.message(HttpStatus.NOT_FOUND, "Unable to find Fruktkorg with id " + id);
         }
 
     }
@@ -46,7 +46,7 @@ public class FruktkorgController {
 
     @PostMapping
     public ResponseEntity<?> createFruktkorg(@RequestBody @Valid FruktkorgCreateDTO fruktkorg) {
-        return JS.message(HttpStatus.OK, fruktkorgService.saveFruktkorg(new Fruktkorg(fruktkorg)));
+        return JSON.message(HttpStatus.OK, fruktkorgService.saveFruktkorg(new Fruktkorg(fruktkorg)));
     }
 
     @PutMapping("")
@@ -56,11 +56,11 @@ public class FruktkorgController {
             for (FruktUpdateDTO frukt : fruktkorg.getFruktList()) {
                 fruktkorgService.getFrukt(frukt.getId());
             }
-            return JS.message(HttpStatus.OK, fruktkorgService.saveFruktkorg(new Fruktkorg(fruktkorg)));
+            return JSON.message(HttpStatus.OK, fruktkorgService.saveFruktkorg(new Fruktkorg(fruktkorg)));
         } catch (FruktkorgMissingException e) {
-            return JS.message(HttpStatus.NOT_FOUND, "Unable to find Fruktkorg with id " + e.getFruktkorgId());
+            return JSON.message(HttpStatus.NOT_FOUND, "Unable to find Fruktkorg with id " + e.getFruktkorgId());
         } catch (FruktMissingException e) {
-            return JS.message(HttpStatus.NOT_FOUND, "Unable to find Frukt with id " + e.getId());
+            return JSON.message(HttpStatus.NOT_FOUND, "Unable to find Frukt with id " + e.getId());
         }
     }
 
@@ -69,9 +69,9 @@ public class FruktkorgController {
         try {
             fruktkorgService.getFruktkorg(id);
             fruktkorgService.deleteFruktkorg(id);
-            return JS.message(HttpStatus.OK, "Fruktkorg with id " + id + " deleted.");
+            return JSON.message(HttpStatus.OK, "Fruktkorg with id " + id + " deleted.");
         } catch (FruktkorgMissingException e) {
-            return JS.message(HttpStatus.NOT_FOUND, "Unable to find Fruktkorg with id " + id);
+            return JSON.message(HttpStatus.NOT_FOUND, "Unable to find Fruktkorg with id " + id);
         }
     }
 
