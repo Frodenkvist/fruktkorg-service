@@ -34,10 +34,10 @@ public class FruktRepositoryTest {
 
         Optional<Frukt> optionalFrukt = fruktRepository.findFruktByid(1L);
         Assert.assertTrue(optionalFrukt.isPresent());
-        Frukt foundFrukt = optionalFrukt.get();
-        Assert.assertEquals("Päron", foundFrukt.getType());
-        Assert.assertEquals(5, foundFrukt.getAmount());
-        Assert.assertEquals(1, foundFrukt.getId());
+        Frukt persistedFrukt = optionalFrukt.get();
+        Assert.assertEquals("Päron", persistedFrukt.getType());
+        Assert.assertEquals(5, persistedFrukt.getAmount());
+        Assert.assertEquals(1, persistedFrukt.getId());
 
     }
 
