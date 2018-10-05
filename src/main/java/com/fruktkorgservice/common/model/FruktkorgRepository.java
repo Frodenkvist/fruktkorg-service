@@ -12,4 +12,6 @@ public interface FruktkorgRepository extends JpaRepository<Fruktkorg, Long> {
 
     @Query(value = "SELECT fk.* FROM fruktkorg fk JOIN frukt f on fk.fruktkorg_id = f.fruktkorg_id WHERE f.type = :type", nativeQuery = true)
     List<Fruktkorg> findFruktkorgarByFruktType(@Param("type") String type);
+
+    Long deleteFruktkorgById(long id);
 }

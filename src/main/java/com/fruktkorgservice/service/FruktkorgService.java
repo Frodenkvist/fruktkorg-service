@@ -19,7 +19,7 @@ public class FruktkorgService {
     @Autowired
     FruktRepository fruktRepository;
 
-    public List<Fruktkorg> getFruktkorg() {
+    public List<Fruktkorg> getFruktkorgar() {
         return fruktkorgRepository.findAll();
     }
 
@@ -42,8 +42,11 @@ public class FruktkorgService {
         return fruktkorgRepository.save(fruktkorg);
     }
 
-    public void deleteFruktkorg(long id) {
-        fruktkorgRepository.deleteById(id);
+    public void deleteFruktkorg(long id) throws FruktkorgMissingException {
+        Long rowsDeleted = fruktkorgRepository.deleteFruktkorgById(id);
+        if (rowsDeleted == 0) {
+            throw new FruktkorgMissingException("Unable to find Fruktkorg to delete with id " + id, id);
+        }
     }
 
 }

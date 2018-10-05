@@ -84,6 +84,17 @@ public class FruktkorgRepositoryTest {
         Assert.assertEquals(PEAR_NAME, persistedPear.getType());
     }
 
+    @Test
+    public void deleteFruktkorgById() {
+        Fruktkorg fruktkorg = createFruktkorg();
+        entityManager.persist(fruktkorg);
+
+        Long deleted = fruktkorgRepository.deleteFruktkorgById(fruktkorg.getId());
+        Assert.assertNotNull(deleted);
+        Assert.assertEquals(1L, deleted.longValue());
+        Assert.assertNull(entityManager.find(Fruktkorg.class, fruktkorg.getId()));
+    }
+
 
     private Fruktkorg createFruktkorg() {
         Fruktkorg fruktkorg = new Fruktkorg();

@@ -24,7 +24,7 @@ public class FruktkorgController {
 
     @GetMapping()
     public List<Fruktkorg> findAll() {
-        return fruktkorgService.getFruktkorg();
+        return fruktkorgService.getFruktkorgar();
     }
 
     @GetMapping("/{id}")
