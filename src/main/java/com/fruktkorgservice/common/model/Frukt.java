@@ -57,4 +57,19 @@ public class Frukt {
                 ", fruktkorg=" + fruktkorg.getName() +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        int idNotSet = 0;
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        if (this.getId() == idNotSet) {
+            return false;
+        }
+
+        Frukt frukt = (Frukt) o;
+        return this.getId() == frukt.getId();
+    }
 }

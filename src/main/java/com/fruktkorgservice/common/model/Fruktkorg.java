@@ -64,4 +64,20 @@ public class Fruktkorg {
                 ", lastChanged=" + lastChanged +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        int idNotSet = 0;
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        if (this.getId() == idNotSet) {
+            return false;
+        }
+
+        Fruktkorg fruktkorg = (Fruktkorg) o;
+        return this.getId() == fruktkorg.getId();
+
+    }
 }

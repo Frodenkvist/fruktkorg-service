@@ -1,6 +1,7 @@
 package com.fruktkorgservice.controller;
 
 import com.common.util.JSON;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fruktkorgservice.common.exception.FruktMissingException;
 import com.fruktkorgservice.common.exception.FruktkorgMissingException;
 import com.fruktkorgservice.common.model.Fruktkorg;
@@ -23,12 +24,12 @@ public class FruktkorgController {
     FruktkorgService fruktkorgService;
 
     @GetMapping()
-    public List<Fruktkorg> findAll() {
-        return fruktkorgService.getFruktkorgar();
+    public ResponseEntity<?> getFruktkorgar() {
+        return JSON.message(HttpStatus.OK, fruktkorgService.getFruktkorgar());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable long id) {
+    public ResponseEntity<?> getFruktkorg(@PathVariable long id) {
 
         try {
             return JSON.message(HttpStatus.OK, fruktkorgService.getFruktkorg(id));
@@ -40,8 +41,8 @@ public class FruktkorgController {
     }
 
     @GetMapping("/frukt/{type}")
-    public List<Fruktkorg> findByFrukt(@PathVariable String type) {
-        return fruktkorgService.getFruktkorgarByFruktType(type);
+    public ResponseEntity<?> findByFrukt(@PathVariable String type) {
+        return JSON.message(HttpStatus.OK, fruktkorgService.getFruktkorgarByFruktType(type));
     }
 
     @PostMapping
